@@ -87,6 +87,7 @@ estadofig.update_layout(
     plot_bgcolor=colors['background'],
     paper_bgcolor=colors['background'],
 )
+
 pets.layout = html.Div(children=[
     html.H1(children='Causas de Abandono:',
     style={
