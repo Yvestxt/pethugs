@@ -119,10 +119,10 @@ pets.layout = html.Div(children=[
         id='pizzacaes',
         figure=pizzacaes
     ),
-    dcc.Graph(aside={
+    dcc.Graph(
         id='pizzagatos',
         figure=pizzagatos
-    }
+    
     ),
 ])
 
