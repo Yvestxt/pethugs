@@ -63,6 +63,30 @@ pizzagatos.update_layout(margin = dict(t=0, l=0, r=0, b=0))
 estadofig = px.bar(estados, x="ESTADOS", y="VALORES", color="RAÇA", barmode="group")
 
 #layout
+abandfig.update_layout(
+    plot_bgcolor=colors['background'],
+    paper_bgcolor=colors['background'],
+)
+medfig.update_layout(
+    plot_bgcolor=colors['background'],
+    paper_bgcolor=colors['background'],
+)
+totalfig.update_layout(
+    plot_bgcolor=colors['background'],
+    paper_bgcolor=colors['background'],
+)
+pizzacaes.update_layout(
+    plot_bgcolor=colors['background'],
+    paper_bgcolor=colors['background'],
+)
+pizzagatos.update_layout(
+    plot_bgcolor=colors['background'],
+    paper_bgcolor=colors['background'],
+)
+estadofig.update_layout(
+    plot_bgcolor=colors['background'],
+    paper_bgcolor=colors['background'],
+)
 pets.layout = html.Div(children=[
     html.H1(children='Causas de Abandono:',
     style={
