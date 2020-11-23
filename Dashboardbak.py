@@ -7,6 +7,11 @@ import plotly.graph_objects as go
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
+GastosN = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/pets por gastos mensal.csv")
+AbandonoN = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/abandono.csv")
+Pets_Ano = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/pets por medias de anos.csv")
+Louyse_Raio_de_Sol = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/BarGraph - Learning/Data/Planilha1.csv")
+#Teste = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/BarGraph - Learning/Data/")
 pets = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 #cores
@@ -47,9 +52,9 @@ pizzacaes = go.Figure(go.Sunburst(
 ))
 #dados pizza/motivos(Gatos)
 pizzagatos = go.Figure(go.Sunburst(
-    labels=["Segurança/Guarda", "Companhia", "Diversão/Afetividade", "Outros", "Até 5 salários", "Mais de 5 a 10 salários", "Mais de 10 salários", "Sem declaração", "Até 5 salários", "Mais de 5 a 10 salários", "Mais de 10 salários", "Sem declaração", "Até 5 salários", "Mais de 5 a 10 salários", "Mais de 10 salários", "Sem declaração", "Até 5 salários", "Mais de 5 a 10 salários", "Mais de 10 salários", "Sem declaração"],
-    parents=["Gatos", "Gatos", "Gatos", "Gatos", "Segurança/Guarda", "Segurança/Guarda", "Segurança/Guarda", "Segurança/Guarda", "Companhia", "Companhia", "Companhia", "Companhia", "Diversão/Afetividade", "Diversão/Afetividade", "Diversão/Afetividade", "Diversão/Afetividade", "Outros", "Outros", "Outros", "Outros"],
-    values=[313, 291, 332, 59, 0, 97, 194, 22, 8, 66, 208, 9, 22, 92, 210, 8, 0, 2, 57, 0],
+    labels=Louyse_Raio_de_Sol['v1'],
+    parents=Louyse_Raio_de_Sol['v2'],
+    values=Louyse_Raio_de_Sol['VALORES'],
     branchvalues = "total",
 ))
 #color_discrete_map={"Cães":"goldenrod","Gatos":"magenta"})
