@@ -14,6 +14,9 @@ Louyse_Raio_de_Sol = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/P
 #Teste = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/BarGraph - Learning/Data/")
 pets = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
+GastosN['Pets'] = GastosN['pets']
+GastosN['Gasto mensal'] = GastosN['gasto mensal']
+
 #cores
 colors = {
     'background': '#bbf6f6',
@@ -28,14 +31,14 @@ abandono = pd.DataFrame({
 })
 #dados média
 media = pd.DataFrame({
-    "Pet": ["Cães", "Gatos", "Roedores", "Peixes", "Répteis", "Aves"],
-    "Gasto mensal": [302.1,121.39,55.50,66.50,14.90,7.80],
+    "Pet": GastosN['Pets'],
+    "Gasto mensal": GastosN['Gasto mensal'],
 })
 #dados total
 total = pd.DataFrame({
-    "Espécie dos PETs": [ "Peixes ornamentais", "Cães", "Gatos", "Aves ornamentais", "Répteis e pequenos mamíferos", "Total de PETs", "Peixes ornamentais", "Cães", "Gatos", "Aves ornamentais", "Répteis e pequenos mamíferos", "Total de PETs"],
-    "Média": [655800000, 360800000, 271900000, 205200000, 70300000, 1500000000, 649793940, 483116188, 381050666, 220866000, 80628340, 1594810000],
-    "Anos": ["Ano de 2013", "Ano de 2013", "Ano de 2013", "Ano de 2013", "Ano de 2013", "Ano de 2013","Ano de 2018" , "Ano de 2018" ,"Ano de 2018" ,"Ano de 2018" ,"Ano de 2018" ,"Ano de 2018"]
+    "Espécie dos PETs": Pets_Ano['PetsT'],
+    "Média": Pets_Ano['Valores das médias'],
+    "Anos": Pets_Ano['Anos das médias']
 })
 #dados estado
 estados = pd.DataFrame({
