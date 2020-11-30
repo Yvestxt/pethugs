@@ -28,7 +28,7 @@ app.layout = html.Div([
 
         html.Label(['Choose column:'],style={'font-weight': 'bold', "text-align": "center"}),
 
-        dcc.Dropdown(id='my_dropdown',
+        dcc.RadioItems(id='my_dropdown',
             options=[
                      {'label': 'Cats', 'value': 'media gatos'},
                      {'label': 'Dogs', 'value': 'media cachorros'}
@@ -37,15 +37,15 @@ app.layout = html.Div([
                      #{'label': 'Animal Condition', 'value': 'Animal Condition'},
                      #{'label': 'Species Status', 'value': 'Species Status'}
             ],
-            optionHeight=35,                   
+            #optionHeight=35,                   
             value='media gatos',                   
-            disabled=False,                    
-            multi=False,                      
-            searchable=True,                    
+                       
+            #multi=False,                      
+            #searchable=True,                    
             #search_value='',                    
-            placeholder='Please select...',    
-            clearable=False,                     
-            style={'width':"40%"},             
+            #placeholder='Please select...',    
+            #clearable=False,                     
+            #style={'width':"40%"},             
             # className='select_box',           
             # persistence=True,                 
             # persistence_type='memory'         
@@ -82,17 +82,15 @@ def build_graph(causas_chosen):
     print(causas_chosen)
     return fig
 
-#---------------------------------------------------------------
-# For tutorial purposes to show the user the search_value
 
-@app.callback(
-    Output(component_id='output_data', component_property='children'),
-    [Input(component_id='my_dropdown', component_property='search_value')]
-)
-
-def build_graph(data_chosen):
-    return ('Search value was: " {} "'.format(data_chosen))
-#---------------------------------------------------------------
+#@app.callback(
+#    Output(component_id='output_data', component_property='children'),
+#    [Input(component_id='my_dropdown', component_property='search_value')]
+#)
+#
+#def build_graph(data_chosen):
+#    return ('Search value was: " {} "'.format(data_chosen))
+##---------------------------------------------------------------
 
 if __name__ == '__main__':
     app.run_server(debug=True)
