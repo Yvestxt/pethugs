@@ -61,7 +61,7 @@ app.layout = html.Div([
         ]),
 
     html.Div([
-        dcc.Graph(id='the_graph')
+        dcc.Graph(id='the_graph', figure={})
     ]),
 
 ])
