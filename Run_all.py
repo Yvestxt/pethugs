@@ -1,5 +1,4 @@
 import dash
-import http.client
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
@@ -30,7 +29,11 @@ app.layout = html.Div([
 
     
     html.Div([
-
+        html.H1('Causas de Abandono',
+        style={
+            'textAlign': 'center'
+        }
+    ),
         html.Br(),
         html.Div(id='output_data'),
         html.Br(),
@@ -58,10 +61,14 @@ app.layout = html.Div([
    
 
     html.Div([
-
+        html.H1('Quantidade média de domicílio que possuem animais por estado',
+        style={
+            'textAlign': 'center'
+        }
+    ),
     
 
-        html.Label(['Choose column:'],style={'font-weight': 'bold', "text-align": "center"}),
+        html.Label(['Escolha o tipo de animal:'],style={'font-weight': 'bold', "text-align": "center"}),
 
         dcc.Dropdown(id='my_dropdown2',
             options=[
@@ -87,7 +94,11 @@ app.layout = html.Div([
    
 
     html.Div([
-
+        html.H1('Motivos de adoção em relação à renda familiar',
+        style={
+            'textAlign': 'center'
+        }
+    ),
     
 
         html.Label(['Escolha seu amigo:'],style={'font-weight': 'bold', "text-align": "center"}),
@@ -114,8 +125,13 @@ app.layout = html.Div([
     ],className='three columns'),
 
     html.Div([
-            html.Pre(children= "Chamadas para agentes de resgate em New York",
-            style={"text-align": "center", "font-size":"100%", "color":"black"})
+            #html.Pre(children= "Chamadas para agentes de resgate em New York",
+            #style={"text-align": "center", "font-size":"100%", "color":"black"})
+            html.H1('Causas de Abandono:',
+        style={
+            'textAlign': 'center'
+        }
+    ),
         ]),
 
         html.Div([
@@ -144,6 +160,7 @@ app.layout = html.Div([
                 style={"width": "50%"}
             ),
         
+        
         html.Div([
         dcc.Graph(id='the_graph')
         ]),
@@ -164,8 +181,8 @@ def build_graph1(causas_chosen):
    
     fig1 = px.pie(dff1, names= 'causas', values= causas_chosen)
     fig1.update_traces(textinfo='percent+label')
-    fig1.update_layout(title={'text':'Abandono Pets',
-                      'font':{'size':28},'x':0.5,'xanchor':'center'})
+    #fig1.update_layout(title={'text':'Abandono Pets',
+    #                  'font':{'size':28},'x':0.5,'xanchor':'center'})
     
 
     print(causas_chosen)
