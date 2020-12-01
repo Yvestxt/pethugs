@@ -53,7 +53,7 @@ app.layout = html.Div([
     [Input(component_id='my_dropdown', component_property='value')]
 )
 
-def build_graph(causas_chosen):
+def build_graph3(causas_chosen):
     
     #dff = df[df['animais']=='gato']
     #dff = df[df['animais']==('causas_chosen')]
