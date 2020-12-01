@@ -73,7 +73,7 @@ app.layout = html.Div([
      Input(component_id='yaxis_raditem', component_property='value')]
 )
 
-def update_graph(x_axis, y_axis):
+def update_graph5(x_axis, y_axis):
 
     dff = df
     # print(dff[[x_axis,y_axis]][:1])
