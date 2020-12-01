@@ -1,21 +1,14 @@
-import pandas as pd     
-import plotly           
-import plotly.express as px
-
 import dash
 import http.client
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-
-
-
-
-
-
+import pandas as pd     
+import plotly           
+import plotly.express as px
 
 app = dash.Dash(__name__)
-
+#Importando dados
 df1 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/abandono.csv")
 df2 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/Pets por Estado.csv")
 df3 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/Louyse_Raio_de_Sol.csv")
@@ -24,46 +17,45 @@ df4 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Projec
 #-------------------------------------------------------------------------------------
 # Deletar linhas vazias e linhas com mais de um valor de idade
 df4 = df4[(df4['# of Animals']>0) & (df4['Age']!='Multiple')]
-# Extract month from time call made to Ranger
+# Selecionar o mês da chamada
 df4['Month of Initial Call'] = pd.to_datetime(df4['Date and Time of initial call'])
 df4['Month of Initial Call'] = df4['Month of Initial Call'].dt.strftime('%m')
-# Copy columns to new columns with clearer names
+# Crirar colunas com nomes mais compreensíveis
 df4['Quantidade de animais'] = df4['# of Animals']
 df4['Tempo gasto em resgate (horas)'] = df4['Duration of Response']
 #-------------------------------------------------------------------------------------
 
 #Fazendo Layout do gráfico com HTML
 app.layout = html.Div([
-#Recebendo a figura do callback
-    html.Div([
-        dcc.Graph(id='our_graph1', figure={})
-    ],className='nine columns'),
 
+    
     html.Div([
 
         html.Br(),
         html.Div(id='output_data'),
         html.Br(),
 
-        html.Label(['Choose column:'],style={'font-weight': 'bold', "text-align": "center"}),
-
+        html.Label(['Escolha o tipo de animail:'],style={'font-weight': 'bold', "text-align": "center"}),
+#Criando botão
         dcc.RadioItems(id='my_dropdown1',
             options=[
-                     {'label': 'Cats', 'value': 'media gatos'},
-                     {'label': 'Dogs', 'value': 'media cachorros'}
+                     {'label': 'Gatos', 'value': 'media gatos'},
+                     {'label': 'Cachorros', 'value': 'media cachorros'}
                      
             ],
                               
             value='media gatos',                   
                    
-            ),                                  
+            ),
+#Recebe e cria gráfico
+    html.Div([
+        dcc.Graph(id='our_graph1', figure={})
+    ],className='nine columns'),                               
                                                 
                                                 
     ],className='three columns'),
 
-    html.Div([
-        dcc.Graph(id='our_graph2', figure={})
-    ],className='nine columns'),
+   
 
     html.Div([
 
@@ -85,13 +77,14 @@ app.layout = html.Div([
             clearable=False,                     
             style={'width':"40%"},             
                   
-            ),                                  
+            ),
+     html.Div([
+        dcc.Graph(id='our_graph2', figure={})
+    ],className='nine columns'),                                    
                                                 
     ],className='three columns'),
 
-    html.Div([
-        dcc.Graph(id='our_graph3', figure={})
-    ],className='nine columns'),
+   
 
     html.Div([
 
@@ -113,7 +106,10 @@ app.layout = html.Div([
             clearable=False,                     
             style={'width':"40%"},             
                   
-            ),                                  
+            ),
+     html.Div([
+        dcc.Graph(id='our_graph3', figure={})
+    ],className='nine columns'),                              
                                                 
     ],className='three columns'),
 
@@ -155,13 +151,13 @@ app.layout = html.Div([
 ])
 
 #---------------------------------------------------------------
-# Connecting the Dropdown values to the graph
+# Conectando o botão com o callback
 @app.callback(
     Output(component_id='our_graph1', component_property='figure'),
     Input(component_id='my_dropdown1', component_property='value')
     
 )
-
+#Função que recebe valor do botão e gera gráfico
 def build_graph1(causas_chosen):
     
     dff1=df1
