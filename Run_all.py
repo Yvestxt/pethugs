@@ -30,7 +30,7 @@ app.layout = html.Div([
         html.Label(['Escolha o tipo de animal:'],style={'font-weight': 'bold', "text-align": "center"}),
 #Criando botão
 
-        dcc.RadioItems(id='MyRadioItems1',
+        dcc.RadioItems(id='BotãoRádio1',
             options=[
                      {'label': 'Gatos', 'value': 'media gatos'},
                      {'label': 'Cachorros', 'value': 'media cachorros'}
@@ -41,9 +41,9 @@ app.layout = html.Div([
                    
             ),
 #Recebe e cria gráfico
-    html.Div([
+        html.Div([
         dcc.Graph(id='our_graph1', figure={})
-    ],className='nine columns'),                               
+        ],className='nine columns'),                               
                                                 
                                                 
     ],className='three columns'),
@@ -162,7 +162,7 @@ app.layout = html.Div([
 # Conectando o botão com o callback
 @app.callback(
     Output(component_id='our_graph1', component_property='figure'),
-    Input(component_id='MyRadioItems1', component_property='value')
+    Input(component_id='BotãoRádio1', component_property='value')
     
 )
 #Função que recebe valor do botão e gera gráfico
