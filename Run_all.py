@@ -1,6 +1,6 @@
 import dash
 import dash_core_components as dcc
-import dash_html_components as html
+import dash_html_components as html 
 from dash.dependencies import Input, Output
 import pandas as pd     
 import plotly           
@@ -8,10 +8,10 @@ import plotly.express as px
 
 app = dash.Dash(__name__)
 #Importando dados
-df1 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/abandono.csv")
-df2 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/Pets por Estado.csv")
-df3 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/Louyse_Raio_de_Sol.csv")
-df4 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/BarGraph - Learning/Code/Dropdown Teste/Urban_Park_Ranger_Animal_Condition.csv")
+df1 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/Data - Github/abandono.csv")
+df2 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/Data - Github/Pets por Estado.csv")
+df3 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/Data - Github/Louyse_Raio_de_Sol.csv")
+df4 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/Data - Github/Urban_Park_Ranger_Animal_Condition.csv")
 
 #-------------------------------------------------------------------------------------
 # Deletar linhas vazias e linhas com mais de um valor de idade
@@ -19,7 +19,7 @@ df4 = df4[(df4['# of Animals']>0) & (df4['Age']!='Multiple')]
 # Selecionar o mês da chamada
 df4['Month of Initial Call'] = pd.to_datetime(df4['Date and Time of initial call'])
 df4['Month of Initial Call'] = df4['Month of Initial Call'].dt.strftime('%m')
-# Crirar colunas com nomes mais compreensíveis
+# Criar colunas com nomes mais compreensíveis
 df4['Quantidade de animais'] = df4['# of Animals']
 df4['Tempo gasto em resgate (horas)'] = df4['Duration of Response']
 #-------------------------------------------------------------------------------------
@@ -34,13 +34,12 @@ app.layout = html.Div([
             'textAlign': 'center'
         }
     ),
-        html.Br(),
-        html.Div(id='output_data'),
-        html.Br(),
+       
 
-        html.Label(['Escolha o tipo de animail:'],style={'font-weight': 'bold', "text-align": "center"}),
+        html.Label(['Escolha o tipo de animal:'],style={'font-weight': 'bold', "text-align": "center"}),
 #Criando botão
-        dcc.RadioItems(id='my_dropdown1',
+
+        dcc.RadioItems(id='MyRadioItems1',
             options=[
                      {'label': 'Gatos', 'value': 'media gatos'},
                      {'label': 'Cachorros', 'value': 'media cachorros'}
@@ -70,11 +69,12 @@ app.layout = html.Div([
 
         html.Label(['Escolha o tipo de animal:'],style={'font-weight': 'bold', "text-align": "center"}),
 
-        dcc.Dropdown(id='my_dropdown2',
+        dcc.Dropdown(id='my_dropdown1',
             options=[
                      #{'label': 'Cats', 'value': 'media gatos'},
                      #{'label': 'Dogs', 'value': 'media cachorros'}
-                     {'label': x, 'value': x} for x in sorted(df2.Tipo.unique())
+                     {'label': x, 'value': x} 
+                      for x in sorted(df2.Tipo.unique())
                     
             ],
             optionHeight=35,                    
@@ -103,7 +103,7 @@ app.layout = html.Div([
 
         html.Label(['Escolha seu amigo:'],style={'font-weight': 'bold', "text-align": "center"}),
 
-        dcc.Dropdown(id='my_dropdown3',
+        dcc.Dropdown(id='my_dropdown2',
             options=[
                      {'label': 'Cats', 'value': 'v2'},
                      {'label': 'Dogs', 'value': 'v3'}
@@ -127,7 +127,7 @@ app.layout = html.Div([
     html.Div([
             #html.Pre(children= "Chamadas para agentes de resgate em New York",
             #style={"text-align": "center", "font-size":"100%", "color":"black"})
-            html.H1('Causas de Abandono:',
+            html.H1('Resgate de animais nos parques de New York',
         style={
             'textAlign': 'center'
         }
@@ -140,9 +140,9 @@ app.layout = html.Div([
                 id='xaxis_raditem',
                 options=[
                          {'label': 'Quantidade de ligações mensais', 'value': 'Month of Initial Call'},
-                         {'label': 'Saúde dos animais', 'value': 'Animal Condition'},
+                         {'label': 'Saúde dos animais', 'value': 'Condição do Animal'},
                 ],
-                value='Animal Condition',
+                value='Condição do Animal',
                 style={"width": "50%"}
             ),
         ]),
@@ -171,7 +171,7 @@ app.layout = html.Div([
 # Conectando o botão com o callback
 @app.callback(
     Output(component_id='our_graph1', component_property='figure'),
-    Input(component_id='my_dropdown1', component_property='value')
+    Input(component_id='MyRadioItems1', component_property='value')
     
 )
 #Função que recebe valor do botão e gera gráfico
@@ -190,7 +190,7 @@ def build_graph1(causas_chosen):
 
 @app.callback(
     Output(component_id='our_graph2', component_property='figure'),
-    Input(component_id='my_dropdown2', component_property='value')
+    Input(component_id='my_dropdown1', component_property='value')
 )
 
 def build_graph2(causas_chosen2):
@@ -198,7 +198,6 @@ def build_graph2(causas_chosen2):
  
     dff2 = df2.copy()
     dff2.set_index('UF', inplace=True)
-    print()
     dff2 = df2[df2['Tipo']==causas_chosen2]
     fig2 = px.bar(dff2, color= 'UF',x = 'Tipo', y= 'Total', barmode='group', range_y=[0, 7000])
     
@@ -207,18 +206,13 @@ def build_graph2(causas_chosen2):
 
 @app.callback(
     Output(component_id='our_graph3', component_property='figure'),
-    Input(component_id='my_dropdown3', component_property='value')
+    Input(component_id='my_dropdown2', component_property='value')
 )
 
 def build_graph3(causas_chosen3):
   
-    #dff = df[df['animais']=='gato']
-    #dff = df[df['animais']==('causas_chosen')]
-    #if causas_chosen is dff['media gatos']:
     dff3 = df3.copy()
-    #dff.set_index('UF', inplace=True)
-    #print()
-    #dff = df[df['Tipo']==causas_chosen]
+    
     if causas_chosen3 == 'v2':
         fig3 = px.sunburst(dff3, names= 'v1', parents ='v2' , values= 'Valores_G', branchvalues="total", width=750, height=750)
     
@@ -245,7 +239,7 @@ def update_graph4(x_axis, y_axis):
             data_frame=dff4,
             x=x_axis,
             y=y_axis,
-            title=y_axis+': by '+x_axis,
+            title=y_axis+': por '+x_axis,
             #facet_col='Borough',
             color='Borough',
             barmode='group',
