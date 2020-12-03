@@ -172,8 +172,7 @@ def build_graph1(causas_chosen):
    
     fig1 = px.pie(dff1, names= 'causas', values= causas_chosen)
     fig1.update_traces(textinfo='percent+label')
-    #fig1.update_layout(title={'text':'Abandono Pets',
-    #                  'font':{'size':28},'x':0.5,'xanchor':'center'})
+  
     
 
     print(causas_chosen)
