@@ -13,16 +13,7 @@ df2 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Projec
 df3 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/Data - Github/Louyse_Raio_de_Sol.csv")
 df4 = pd.read_csv("C:/Users/Paulo V.DESKTOP-060HC8T/Desktop/APC/Pets Code/Project Nexz - Pets/Data - Pets/Data - Github/Urban_Park_Ranger_Animal_Condition.csv")
 
-#-------------------------------------------------------------------------------------
-# Deletar linhas vazias e linhas com mais de um valor de idade
-df4 = df4[(df4['# of Animals']>0) & (df4['Age']!='Multiple')]
-# Selecionar o mês da chamada
-df4['Month of Initial Call'] = pd.to_datetime(df4['Date and Time of initial call'])
-df4['Month of Initial Call'] = df4['Month of Initial Call'].dt.strftime('%m')
-# Criar colunas com nomes mais compreensíveis
-df4['Quantidade de animais'] = df4['# of Animals']
-df4['Tempo gasto em resgate (horas)'] = df4['Duration of Response']
-#-------------------------------------------------------------------------------------
+
 
 #Fazendo Layout do gráfico com HTML
 app.layout = html.Div([
@@ -232,8 +223,17 @@ def build_graph3(causas_chosen3):
 
 def update_graph4(x_axis, y_axis):
 
-    dff4 = df4
-    # print(dff[[x_axis,y_axis]][:1])
+    dff4 = df4.copy()
+    #-------------------------------------------------------------------------------------
+    # Deletar linhas vazias e linhas com mais de um valor de idade
+    dff4 = dff4[(dff4['# of Animals']>0) & (dff4['Age']!='Multiple')]
+    # Selecionar o mês da chamada
+    dff4['Month of Initial Call'] = pd.to_datetime(dff4['Date and Time of initial call'])
+    dff4['Month of Initial Call'] = dff4['Month of Initial Call'].dt.strftime('%m')
+    # Criar colunas com nomes mais compreensíveis
+    dff4['Quantidade de animais'] = dff4['# of Animals']
+    dff4['Tempo gasto em resgate (horas)'] = dff4['Duration of Response']
+#-------------------------------------------------------------------------------------
 
     barchart=px.histogram(
             data_frame=dff4,
