@@ -1,0 +1,21 @@
+v1,v2,Valores_G,v3,Valores_C
+Segurança/Guarda,gatos,313,cachorros,1006
+Companhia,gatos,291,cachorros,1610
+Diversão/Afetividade,gatos,332,cachorros,1303
+Outros,gatos,59,cachorros,496
+Até 5 salários,Segurança/Guarda,0,Segurança/Guarda,144
+Mais de 5 a 10 salários,Segurança/Guarda,97,Segurança/Guarda,429
+Mais de 10 salários,Segurança/Guarda,194,Segurança/Guarda,416
+Sem declaração,Segurança/Guarda,22,Segurança/Guarda,17
+Até 5 salários,Companhia,8,Companhia,140
+Mais de 5 a 10 salários,Companhia,66,Companhia,647
+Mais de 10 salários,Companhia,208,Companhia,724
+Sem declaração,Companhia,9,Companhia,99
+Até 5 salários,Diversão/Afetividade,22,Diversão/Afetividade,163
+Mais de 5 a 10 salários,Diversão/Afetividade,92,Diversão/Afetividade,429
+Mais de 10 salários,Diversão/Afetividade,210,Diversão/Afetividade,617
+Sem declaração,Diversão/Afetividade,8,Diversão/Afetividade,94
+Até 5 salários,Outros,0,Outros,57
+Mais de 5 a 10 salários,Outros,2,Outros,206
+Mais de 10 salários,Outros,57,Outros,209
+Sem declaração,Outros,0,Outros,24
